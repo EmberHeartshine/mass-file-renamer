@@ -12,11 +12,11 @@
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        System.Diagnostics.Process.Start("http://code.google.com/p/mass-file-renamer")
+        System.Diagnostics.Process.Start("https://github.com/EmberHeartshine/mass-file-renamer")
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        System.Diagnostics.Process.Start("http://theunl33t.blogspot.com")
+        System.Diagnostics.Process.Start("https://code.google.com/archive/p/mass-file-renamer/")
     End Sub
 
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click
