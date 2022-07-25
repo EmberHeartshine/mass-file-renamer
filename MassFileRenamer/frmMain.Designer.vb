@@ -23,30 +23,30 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Me.btnOpen = New System.Windows.Forms.Button
-        Me.txtDirectory = New System.Windows.Forms.TextBox
-        Me.GrpSearchandRemove = New System.Windows.Forms.GroupBox
-        Me.chkTestRemove = New System.Windows.Forms.CheckBox
-        Me.chkRegexRemove = New System.Windows.Forms.CheckBox
-        Me.txtSearchRemove = New System.Windows.Forms.TextBox
-        Me.btnSearchRemove = New System.Windows.Forms.Button
-        Me.grpStripXBeginning = New System.Windows.Forms.GroupBox
-        Me.RadioEnd = New System.Windows.Forms.RadioButton
-        Me.RadioBeginning = New System.Windows.Forms.RadioButton
-        Me.chkIgonreHidden = New System.Windows.Forms.CheckBox
-        Me.txtStripX = New System.Windows.Forms.TextBox
-        Me.btnStripX = New System.Windows.Forms.Button
-        Me.numStripX = New System.Windows.Forms.NumericUpDown
-        Me.grpSearchandReplace = New System.Windows.Forms.GroupBox
-        Me.chkTestMode = New System.Windows.Forms.CheckBox
-        Me.chkRegex = New System.Windows.Forms.CheckBox
-        Me.btnSearchandReplace = New System.Windows.Forms.Button
-        Me.txtSearchandReplaceReplace = New System.Windows.Forms.TextBox
-        Me.txtSearchandReplaceSearch = New System.Windows.Forms.TextBox
-        Me.dlgOpenFolder = New System.Windows.Forms.FolderBrowserDialog
-        Me.BtnProperCase = New System.Windows.Forms.Button
-        Me.btnShowRegexHelp = New System.Windows.Forms.Button
-        Me.btnAbout = New System.Windows.Forms.Button
+        Me.btnOpen = New System.Windows.Forms.Button()
+        Me.txtDirectory = New System.Windows.Forms.TextBox()
+        Me.GrpSearchandRemove = New System.Windows.Forms.GroupBox()
+        Me.chkTestRemove = New System.Windows.Forms.CheckBox()
+        Me.chkRegexRemove = New System.Windows.Forms.CheckBox()
+        Me.txtSearchRemove = New System.Windows.Forms.TextBox()
+        Me.btnSearchRemove = New System.Windows.Forms.Button()
+        Me.grpStripXBeginning = New System.Windows.Forms.GroupBox()
+        Me.RadioEnd = New System.Windows.Forms.RadioButton()
+        Me.RadioBeginning = New System.Windows.Forms.RadioButton()
+        Me.chkIgonreHidden = New System.Windows.Forms.CheckBox()
+        Me.txtStripX = New System.Windows.Forms.TextBox()
+        Me.btnStripX = New System.Windows.Forms.Button()
+        Me.numStripX = New System.Windows.Forms.NumericUpDown()
+        Me.grpSearchandReplace = New System.Windows.Forms.GroupBox()
+        Me.chkTestMode = New System.Windows.Forms.CheckBox()
+        Me.chkRegex = New System.Windows.Forms.CheckBox()
+        Me.btnSearchandReplace = New System.Windows.Forms.Button()
+        Me.txtSearchandReplaceReplace = New System.Windows.Forms.TextBox()
+        Me.txtSearchandReplaceSearch = New System.Windows.Forms.TextBox()
+        Me.dlgOpenFolder = New System.Windows.Forms.FolderBrowserDialog()
+        Me.BtnProperCase = New System.Windows.Forms.Button()
+        Me.btnShowRegexHelp = New System.Windows.Forms.Button()
+        Me.btnAbout = New System.Windows.Forms.Button()
         Me.GrpSearchandRemove.SuspendLayout()
         Me.grpStripXBeginning.SuspendLayout()
         CType(Me.numStripX, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +66,7 @@ Partial Class frmMain
         'txtDirectory
         '
         Me.txtDirectory.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDirectory.ForeColor = System.Drawing.Color.Silver
         Me.txtDirectory.Location = New System.Drawing.Point(12, 16)
         Me.txtDirectory.Name = "txtDirectory"
@@ -77,7 +77,7 @@ Partial Class frmMain
         'GrpSearchandRemove
         '
         Me.GrpSearchandRemove.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GrpSearchandRemove.Controls.Add(Me.chkTestRemove)
         Me.GrpSearchandRemove.Controls.Add(Me.chkRegexRemove)
         Me.GrpSearchandRemove.Controls.Add(Me.txtSearchRemove)
@@ -113,7 +113,7 @@ Partial Class frmMain
         'txtSearchRemove
         '
         Me.txtSearchRemove.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSearchRemove.ForeColor = System.Drawing.Color.Silver
         Me.txtSearchRemove.Location = New System.Drawing.Point(11, 20)
         Me.txtSearchRemove.Name = "txtSearchRemove"
@@ -134,7 +134,7 @@ Partial Class frmMain
         'grpStripXBeginning
         '
         Me.grpStripXBeginning.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpStripXBeginning.Controls.Add(Me.RadioEnd)
         Me.grpStripXBeginning.Controls.Add(Me.RadioBeginning)
         Me.grpStripXBeginning.Controls.Add(Me.chkIgonreHidden)
@@ -206,7 +206,7 @@ Partial Class frmMain
         'numStripX
         '
         Me.numStripX.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.numStripX.Location = New System.Drawing.Point(107, 30)
         Me.numStripX.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.numStripX.Name = "numStripX"
@@ -217,7 +217,7 @@ Partial Class frmMain
         'grpSearchandReplace
         '
         Me.grpSearchandReplace.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpSearchandReplace.Controls.Add(Me.chkTestMode)
         Me.grpSearchandReplace.Controls.Add(Me.chkRegex)
         Me.grpSearchandReplace.Controls.Add(Me.btnSearchandReplace)
@@ -264,7 +264,7 @@ Partial Class frmMain
         'txtSearchandReplaceReplace
         '
         Me.txtSearchandReplaceReplace.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSearchandReplaceReplace.ForeColor = System.Drawing.Color.Silver
         Me.txtSearchandReplaceReplace.Location = New System.Drawing.Point(11, 49)
         Me.txtSearchandReplaceReplace.Name = "txtSearchandReplaceReplace"
@@ -275,7 +275,7 @@ Partial Class frmMain
         'txtSearchandReplaceSearch
         '
         Me.txtSearchandReplaceSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSearchandReplaceSearch.ForeColor = System.Drawing.Color.Silver
         Me.txtSearchandReplaceSearch.Location = New System.Drawing.Point(11, 23)
         Me.txtSearchandReplaceSearch.Name = "txtSearchandReplaceSearch"
@@ -286,7 +286,7 @@ Partial Class frmMain
         'BtnProperCase
         '
         Me.BtnProperCase.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnProperCase.Location = New System.Drawing.Point(203, 305)
         Me.BtnProperCase.Name = "BtnProperCase"
         Me.BtnProperCase.Size = New System.Drawing.Size(176, 32)
@@ -327,8 +327,10 @@ Partial Class frmMain
         Me.Controls.Add(Me.GrpSearchandRemove)
         Me.Controls.Add(Me.txtDirectory)
         Me.Controls.Add(Me.btnOpen)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMain"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.Text = "Mass File Renamer"
         Me.GrpSearchandRemove.ResumeLayout(False)
         Me.GrpSearchandRemove.PerformLayout()
