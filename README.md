@@ -2,6 +2,7 @@
 ![mass-file-renamer icon](/assets/fork.png)
 ###### Mass File Renamer: A program to simplify renaming a mass of file in a simple batch GUI
 A program to make renaming a mass of file in batch easy through a simple and lightweight GUI. This app was designed to be a lightweight and more importantly a stand alone application. By being both of these things this app is also portable and can be taken with you on your flash drive.
+
 ![Screenshot of the main form](/assets/main.png)
 ## Features
 - Lightweight stand alone binary. Can be used from a USB thumb drive.
