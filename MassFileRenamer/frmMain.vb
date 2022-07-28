@@ -212,12 +212,10 @@ Public Class frmMain
     Public Function CheckforPathError() As Boolean
         Dim foundError As Boolean = False
         If txtDirectory.Text = "Path To Directory" Or txtDirectory.Text = "" Then
-            MsgBox("You need to select a path first.", MsgBoxStyle.Critical, "Error in pathname")
+            MsgBox("You need to select a path first.", MsgBoxStyle.Critical, "Error in path name")
             foundError = True
-        End If
-
-        If Directory.Exists(txtDirectory.Text) = False Then
-            MsgBox("The path " & txtDirectory.Text & " Does not exist", MsgBoxStyle.Critical, "Error in pathname")
+        ElseIf Directory.Exists(txtDirectory.Text) = False Then
+            MsgBox("The path " & txtDirectory.Text & " does not exist", MsgBoxStyle.Critical, "Error in path name")
             foundError = True
         End If
 
