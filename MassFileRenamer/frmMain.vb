@@ -209,6 +209,14 @@ Public Class frmMain
         CheckforPathError = foundError
     End Function
 
+    Public Function CheckifFileExists(path, oldFileName, newFileName) As Boolean
+        Dim fileExists As Boolean = False
+        If System.IO.File.Exists(path & "\" & newFileName) And Not Equals(oldFileName, path & "\" & newFileName) Then
+            fileExists = True
+        End If
+        CheckifFileExists = fileExists
+    End Function
+
     '==================
     '  File Functions
     '==================
@@ -229,13 +237,22 @@ Public Class frmMain
             JustFileName = ExtractFileNamefromPath(fileNameToProcess)
             If chkRegexRemove.Checked Then
                 If chkTestRemove.Checked Then
+                    If TestModeBuffer.Contains(Regex.Replace(JustFileName, SearchTerm, "")) Then
+                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                    End If
                     TestModeBuffer &= Regex.Replace(JustFileName, SearchTerm, "") & vbCrLf
                 Else
                     JustFileName = Regex.Replace(JustFileName, SearchTerm, "")
+                    If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                    End If
                     System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
             Else
                 JustFileName = JustFileName.Replace(SearchTerm, "")
+                If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                    JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                End If
                 System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
             End If
         Next fileNameToProcess
@@ -254,13 +271,22 @@ Public Class frmMain
             JustFileName = ExtractFileNamefromPath(fileNameToProcess)
             If chkRegex.Checked Then
                 If chkTestMode.Checked Then
+                    If TestModeBuffer.Contains(Regex.Replace(JustFileName, SearchTerm, Replacementtxt)) Then
+                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                    End If
                     TestModeBuffer &= Regex.Replace(JustFileName, SearchTerm, Replacementtxt) & vbCrLf
                 Else
                     JustFileName = Regex.Replace(JustFileName, SearchTerm, Replacementtxt)
+                    If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                    End If
                     System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
             Else
                 JustFileName = JustFileName.Replace(SearchTerm, Replacementtxt)
+                If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                    JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                End If
                 System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
             End If
         Next fileNameToProcess
@@ -286,11 +312,17 @@ Public Class frmMain
                     If chkIgonreHidden.Checked = False Then
                         If Strings.Right(JustFileName, Len(txtStripX.Text)) = txtStripX.Text Then
                             JustFileName = Mid(JustFileName, strip + 1)
+                            If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                                JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                            End If
                             System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                         End If
                     End If
                 ElseIf Strings.Right(JustFileName, Len(txtStripX.Text)) = txtStripX.Text Then
                     JustFileName = Mid(JustFileName, strip + 1)
+                    If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                    End If
                     System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
             End If
@@ -313,11 +345,17 @@ Public Class frmMain
                     If chkIgonreHidden.Checked = False Then
                         If Strings.Right(JustFileName, Len(txtStripX.Text)) = txtStripX.Text Then
                             JustFileName = Mid(JustFileName, 1, Len(JustFileName) - (strip + Len(txtStripX.Text))) & txtStripX.Text
+                            If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                                JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                            End If
                             System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                         End If
                     End If
                 ElseIf Strings.Right(JustFileName, Len(txtStripX.Text)) = txtStripX.Text Then
                     JustFileName = Mid(JustFileName, 1, Len(JustFileName) - (strip + Len(txtStripX.Text))) & txtStripX.Text
+                    If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                    End If
                     System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
             End If
