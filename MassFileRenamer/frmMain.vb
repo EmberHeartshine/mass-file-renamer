@@ -1,14 +1,12 @@
 ﻿Imports System.IO
 Imports System.Text.RegularExpressions
 
-
 Public Class frmMain
-
     Dim FileList As String()
 
-    '===========================================================================================================================
-    '                                         Open Directory Controls
-    '===========================================================================================================================
+    '===========================
+    '  Open Directory Controls
+    '===========================
 
     Private Sub Form1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
@@ -17,7 +15,6 @@ Public Class frmMain
     End Sub
 
     Private Sub Form1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragDrop
-
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             Dim MyFiles() As String
             MyFiles = e.Data.GetData(DataFormats.FileDrop)
@@ -26,7 +23,6 @@ Public Class frmMain
                 txtDirectory.Text = MyFiles(0)
             End If
         End If
-
     End Sub
 
     Private Sub btnOpen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpen.Click
@@ -51,9 +47,9 @@ Public Class frmMain
         End If
     End Sub
 
-    '===========================================================================================================================
-    '                                       Search and Remove Controls
-    '===========================================================================================================================
+    '==============================
+    '  Search and Remove Controls
+    '==============================
 
     Private Sub txtSearchRemove_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSearchRemove.GotFocus
         If txtSearchRemove.Text = "Search For Text to Remove" Then
@@ -70,15 +66,14 @@ Public Class frmMain
     End Sub
 
     Private Sub btnSearchRemove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearchRemove.Click
-        '=========== Error Checking ===============
+        '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
         If txtSearchRemove.Text = "Search For Text to Remove" Or txtSearchRemove.Text = "" Then
-            MsgBox("You need to enter a term to remove from files first.", MsgBoxStyle.Critical, "search and remove error")
+            MsgBox("You need to enter a term to remove from files first.", MsgBoxStyle.Critical, "Search and remove error")
             Exit Sub
         End If
-        '=========== Error Checking ===============
+        '== Error Checking ==
         SearchandRemove(txtSearchRemove.Text)
-
     End Sub
 
     Private Sub chkRegexRemove_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkRegexRemove.CheckedChanged
@@ -92,12 +87,13 @@ Public Class frmMain
             End If
             chkTestRemove.Enabled = False
             chkTestRemove.Checked = False
-            End If
+        End If
     End Sub
 
-    '===========================================================================================================================
-    '                                           Strip X Controls
-    '===========================================================================================================================
+    '====================
+    '  Strip X Controls
+    '====================
+
     Private Sub txtStripX_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtStripX.GotFocus
         If txtStripX.Text = "File Ext" Then
             txtStripX.Text = ""
@@ -117,29 +113,24 @@ Public Class frmMain
     End Sub
 
     Private Sub btnStripX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStripX.Click
-        '=========== Error Checking ===============
+        '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
 
-        If txtStripX.Text = "" Or txtStripX.Text = "On Files That End With" Then
-            MsgBox("You need to enter an extension.", MsgBoxStyle.Critical, "Strip x Error")
+        If txtStripX.Text = "" Or txtStripX.Text = "File Ext" Then
+            MsgBox("You need to enter an extension.", MsgBoxStyle.Critical, "Strip X Error")
             Exit Sub
         End If
-        '=========== Error Checking ===============
-
-
+        '== Error Checking ==
         If RadioBeginning.Checked = True Then
             StripXfromBeginning(numStripX.Value)
         Else
             StripXfromEnd(numStripX.Value)
         End If
-
-
-
     End Sub
 
-    '===========================================================================================================================
-    '                                   Search and Replace Text Controls
-    '===========================================================================================================================
+    '====================================
+    '  Search and Replace Text Controls
+    '====================================
 
     Private Sub txtSearchandReplaceSearch_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSearchandReplaceSearch.GotFocus
         If txtSearchandReplaceSearch.Text = "Search String" Then
@@ -170,20 +161,17 @@ Public Class frmMain
     End Sub
 
     Private Sub btnSearchandReplace_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearchandReplace.Click
-        '=========== Error Checking ===============
+        '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
-
         If txtSearchandReplaceSearch.Text = "Search String" Or txtSearchandReplaceSearch.Text = "" Then
-            MsgBox("Please Enter a Search String", MsgBoxStyle.Critical, "search and replace error")
+            MsgBox("Please enter a search string.", MsgBoxStyle.Critical, "Search and replace error")
             Exit Sub
         End If
-
-
         If txtSearchandReplaceReplace.Text = "Replacement String" Or txtSearchandReplaceReplace.Text = "" Then
-            MsgBox("Please Enter a Replacement Term", MsgBoxStyle.Critical, "search and replace error")
+            MsgBox("Please enter a replacement term.", MsgBoxStyle.Critical, "Search and replace error")
             Exit Sub
         End If
-        '=========== Error Checking ===============
+        '== Error Checking ==
         SearchandReplace(txtSearchandReplaceSearch.Text, txtSearchandReplaceReplace.Text)
     End Sub
 
@@ -205,9 +193,9 @@ Public Class frmMain
         frmRegExHelp.Show()
     End Sub
 
-    '===========================================================================================================================
-    '                                           Error Checking
-    '===========================================================================================================================
+    '==================
+    '  Error Checking
+    '==================
 
     Public Function CheckforPathError() As Boolean
         Dim foundError As Boolean = False
@@ -218,13 +206,12 @@ Public Class frmMain
             MsgBox("The path " & txtDirectory.Text & " does not exist", MsgBoxStyle.Critical, "Error in path name")
             foundError = True
         End If
-
         CheckforPathError = foundError
     End Function
 
-    '===========================================================================================================================
-    '                                           File Functions
-    '===========================================================================================================================
+    '==================
+    '  File Functions
+    '==================
 
     Public Sub GetFileArray()
         FileList = Directory.GetFiles(txtDirectory.Text)
@@ -237,7 +224,6 @@ Public Class frmMain
     Private Sub SearchandRemove(ByVal SearchTerm As String)
         Dim JustFileName As String
         Dim TestModeBuffer As String = ""
-
         GetFileArray()
         For Each fileNameToProcess In FileList
             JustFileName = ExtractFileNamefromPath(fileNameToProcess)
@@ -253,7 +239,6 @@ Public Class frmMain
                 System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
             End If
         Next fileNameToProcess
-
         If chkTestRemove.Checked Then
             MsgBox(TestModeBuffer)
         Else
@@ -264,11 +249,9 @@ Public Class frmMain
     Private Sub SearchandReplace(ByVal SearchTerm As String, ByVal Replacementtxt As String)
         Dim JustFileName As String = ""
         Dim TestModeBuffer As String = ""
-
         GetFileArray()
         For Each fileNameToProcess In FileList
             JustFileName = ExtractFileNamefromPath(fileNameToProcess)
-
             If chkRegex.Checked Then
                 If chkTestMode.Checked Then
                     TestModeBuffer &= Regex.Replace(JustFileName, SearchTerm, Replacementtxt) & vbCrLf
@@ -291,8 +274,6 @@ Public Class frmMain
     Private Sub StripXfromBeginning(ByVal strip As Integer)
         Dim JustFileName As String
         Dim attributes As FileAttributes
-
-
         GetFileArray()
         For Each fileNameToProcess In FileList
             JustFileName = ExtractFileNamefromPath(fileNameToProcess)
@@ -308,12 +289,9 @@ Public Class frmMain
                             System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                         End If
                     End If
-                Else
-
-                    If Strings.Right(JustFileName, Len(txtStripX.Text)) = txtStripX.Text Then
-                        JustFileName = Mid(JustFileName, strip + 1)
-                        System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
-                    End If
+                ElseIf Strings.Right(JustFileName, Len(txtStripX.Text)) = txtStripX.Text Then
+                    JustFileName = Mid(JustFileName, strip + 1)
+                    System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
             End If
         Next fileNameToProcess
@@ -323,8 +301,6 @@ Public Class frmMain
     Private Sub StripXfromEnd(ByVal strip As Integer)
         Dim JustFileName As String
         Dim attributes As FileAttributes
-
-
         GetFileArray()
         For Each fileNameToProcess In FileList
             JustFileName = ExtractFileNamefromPath(fileNameToProcess)
@@ -340,12 +316,9 @@ Public Class frmMain
                             System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                         End If
                     End If
-                Else
-
-                    If Strings.Right(JustFileName, Len(txtStripX.Text)) = txtStripX.Text Then
-                        JustFileName = Mid(JustFileName, 1, Len(JustFileName) - (strip + Len(txtStripX.Text))) & txtStripX.Text
-                        System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
-                    End If
+                ElseIf Strings.Right(JustFileName, Len(txtStripX.Text)) = txtStripX.Text Then
+                    JustFileName = Mid(JustFileName, 1, Len(JustFileName) - (strip + Len(txtStripX.Text))) & txtStripX.Text
+                    System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
             End If
         Next fileNameToProcess
@@ -353,16 +326,13 @@ Public Class frmMain
     End Sub
 
     Private Sub BtnProperCase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnProperCase.Click
-        '=========== Error Checking ===============
+        '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
-        '=========== Error Checking ===============
-
+        '== Error Checking ==
         Dim JustFileName As String
         Dim JustFileNameNoExt As String
         Dim attributes As FileAttributes
-
         GetFileArray()
-
         For Each fileNameToProcess In FileList
             attributes = File.GetAttributes(fileNameToProcess)
             If (attributes And FileAttributes.System) = FileAttributes.System Then
@@ -377,7 +347,6 @@ Public Class frmMain
                     System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
             End If
-
         Next fileNameToProcess
         MsgBox("Search and Remove Complete!", MsgBoxStyle.Information, "Done!")
     End Sub
