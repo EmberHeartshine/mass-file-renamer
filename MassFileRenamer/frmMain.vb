@@ -31,9 +31,10 @@ Public Class frmMain
 
     Private Sub btnOpen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpen.Click
         dlgOpenFolder.ShowDialog()
-        txtDirectory.Text = dlgOpenFolder.SelectedPath
-        txtDirectory.ForeColor = Color.Black
-
+        If Directory.Exists(dlgOpenFolder.SelectedPath) Then
+            txtDirectory.Text = dlgOpenFolder.SelectedPath
+            txtDirectory.ForeColor = Color.Black
+        End If
     End Sub
 
     Private Sub txtDirectory_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDirectory.GotFocus
