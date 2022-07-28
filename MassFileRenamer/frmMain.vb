@@ -363,7 +363,7 @@ Public Class frmMain
         MsgBox("Strip X From End Complete!", MsgBoxStyle.Information, "Done!")
     End Sub
 
-    Private Sub BtnProperCase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnProperCase.Click
+    Private Sub btnProperCase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProperCase.Click
         '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
         '== Error Checking ==
@@ -386,10 +386,41 @@ Public Class frmMain
                 End If
             End If
         Next fileNameToProcess
-        MsgBox("Search and Remove Complete!", MsgBoxStyle.Information, "Done!")
+        MsgBox("Proper Casing Complete!", MsgBoxStyle.Information, "Done!")
     End Sub
 
     Private Sub btnAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbout.Click
         frmAbout.Show()
+    End Sub
+
+    Private Sub btnEnumerate_Click(sender As Object, e As EventArgs) Handles btnEnumerate.Click
+        '== Error Checking ==
+        If CheckforPathError() = True Then Exit Sub
+        '== Error Checking ==
+        Dim JustFileName As String
+        Dim attributes As FileAttributes
+        Dim fileIndex = 1
+        Dim leadingZeroes
+        GetFileArray()
+        leadingZeroes = "D" & FileList.Length.ToString.Length.ToString
+        For Each fileNameToProcess In FileList
+            attributes = File.GetAttributes(fileNameToProcess)
+            If (attributes And FileAttributes.System) = FileAttributes.System Then
+                ' ALWAYS Ignore SYSTEM files
+            Else
+                If (attributes And FileAttributes.Hidden) = FileAttributes.Hidden Then
+                    ' ALWAYS Ignore Hidden files
+                Else
+                    JustFileName = ExtractFileNamefromPath(fileNameToProcess)
+                    JustFileName = fileIndex.ToString(leadingZeroes) & "-" & JustFileName
+                    If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                    End If
+                    System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
+                End If
+            End If
+            fileIndex += 1
+        Next fileNameToProcess
+        MsgBox("File Numbering Complete!", MsgBoxStyle.Information, "Done!")
     End Sub
 End Class

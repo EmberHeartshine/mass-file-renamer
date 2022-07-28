@@ -23,6 +23,7 @@ Partial Class frmAbout
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAbout))
         Me.OKButton = New System.Windows.Forms.Button()
         Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
@@ -33,6 +34,7 @@ Partial Class frmAbout
         Me.LabelVersion = New System.Windows.Forms.Label()
         Me.LabelCopyright = New System.Windows.Forms.Label()
         Me.LabelCompanyName = New System.Windows.Forms.Label()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -49,12 +51,13 @@ Partial Class frmAbout
         'LogoPictureBox
         '
         Me.LogoPictureBox.Image = CType(resources.GetObject("LogoPictureBox.Image"), System.Drawing.Image)
-        Me.LogoPictureBox.Location = New System.Drawing.Point(4, 4)
+        Me.LogoPictureBox.Location = New System.Drawing.Point(12, 9)
         Me.LogoPictureBox.Name = "LogoPictureBox"
-        Me.LogoPictureBox.Size = New System.Drawing.Size(130, 246)
+        Me.LogoPictureBox.Size = New System.Drawing.Size(125, 232)
         Me.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.LogoPictureBox.TabIndex = 2
         Me.LogoPictureBox.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.LogoPictureBox, "You know what they say about curiosity and cats.")
         '
         'Label1
         '
@@ -89,6 +92,7 @@ Partial Class frmAbout
         'LabelProductName
         '
         Me.LabelProductName.AutoSize = True
+        Me.LabelProductName.BackColor = System.Drawing.Color.Transparent
         Me.LabelProductName.Location = New System.Drawing.Point(143, 9)
         Me.LabelProductName.Name = "LabelProductName"
         Me.LabelProductName.Size = New System.Drawing.Size(98, 13)
@@ -122,6 +126,13 @@ Partial Class frmAbout
         Me.LabelCompanyName.TabIndex = 13
         Me.LabelCompanyName.Text = "LabelCompanyName"
         '
+        'ToolTip1
+        '
+        Me.ToolTip1.AutomaticDelay = 3000
+        Me.ToolTip1.AutoPopDelay = 10000
+        Me.ToolTip1.InitialDelay = 3000
+        Me.ToolTip1.ReshowDelay = 200
+        '
         'frmAbout
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -133,9 +144,9 @@ Partial Class frmAbout
         Me.Controls.Add(Me.LabelProductName)
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.LinkLabel1)
-        Me.Controls.Add(Me.LogoPictureBox)
         Me.Controls.Add(Me.OKButton)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.LogoPictureBox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -144,7 +155,6 @@ Partial Class frmAbout
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "About Mass File Renamer"
-        Me.TopMost = True
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -159,5 +169,5 @@ Partial Class frmAbout
     Friend WithEvents LabelVersion As System.Windows.Forms.Label
     Friend WithEvents LabelCopyright As System.Windows.Forms.Label
     Friend WithEvents LabelCompanyName As System.Windows.Forms.Label
-
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

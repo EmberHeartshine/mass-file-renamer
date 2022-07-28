@@ -22,6 +22,7 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.btnOpen = New System.Windows.Forms.Button()
         Me.txtDirectory = New System.Windows.Forms.TextBox()
@@ -44,9 +45,11 @@ Partial Class frmMain
         Me.txtSearchandReplaceReplace = New System.Windows.Forms.TextBox()
         Me.txtSearchandReplaceSearch = New System.Windows.Forms.TextBox()
         Me.dlgOpenFolder = New System.Windows.Forms.FolderBrowserDialog()
-        Me.BtnProperCase = New System.Windows.Forms.Button()
+        Me.btnProperCase = New System.Windows.Forms.Button()
         Me.btnShowRegexHelp = New System.Windows.Forms.Button()
         Me.btnAbout = New System.Windows.Forms.Button()
+        Me.btnEnumerate = New System.Windows.Forms.Button()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.GrpSearchandRemove.SuspendLayout()
         Me.grpStripXBeginning.SuspendLayout()
         CType(Me.numStripX, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +59,7 @@ Partial Class frmMain
         'btnOpen
         '
         Me.btnOpen.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnOpen.Location = New System.Drawing.Point(471, 12)
+        Me.btnOpen.Location = New System.Drawing.Point(471, 14)
         Me.btnOpen.Name = "btnOpen"
         Me.btnOpen.Size = New System.Drawing.Size(60, 24)
         Me.btnOpen.TabIndex = 1
@@ -124,7 +127,7 @@ Partial Class frmMain
         'btnSearchRemove
         '
         Me.btnSearchRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSearchRemove.Location = New System.Drawing.Point(457, 16)
+        Me.btnSearchRemove.Location = New System.Drawing.Point(457, 18)
         Me.btnSearchRemove.Name = "btnSearchRemove"
         Me.btnSearchRemove.Size = New System.Drawing.Size(50, 24)
         Me.btnSearchRemove.TabIndex = 3
@@ -254,7 +257,7 @@ Partial Class frmMain
         'btnSearchandReplace
         '
         Me.btnSearchandReplace.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSearchandReplace.Location = New System.Drawing.Point(459, 19)
+        Me.btnSearchandReplace.Location = New System.Drawing.Point(459, 21)
         Me.btnSearchandReplace.Name = "btnSearchandReplace"
         Me.btnSearchandReplace.Size = New System.Drawing.Size(47, 50)
         Me.btnSearchandReplace.TabIndex = 14
@@ -283,22 +286,23 @@ Partial Class frmMain
         Me.txtSearchandReplaceSearch.TabIndex = 12
         Me.txtSearchandReplaceSearch.Text = "Search String"
         '
-        'BtnProperCase
+        'btnProperCase
         '
-        Me.BtnProperCase.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.btnProperCase.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnProperCase.Location = New System.Drawing.Point(203, 305)
-        Me.BtnProperCase.Name = "BtnProperCase"
-        Me.BtnProperCase.Size = New System.Drawing.Size(176, 32)
-        Me.BtnProperCase.TabIndex = 18
-        Me.BtnProperCase.Text = "Proper Case Files"
-        Me.BtnProperCase.UseVisualStyleBackColor = True
+        Me.btnProperCase.Location = New System.Drawing.Point(290, 305)
+        Me.btnProperCase.Name = "btnProperCase"
+        Me.btnProperCase.Size = New System.Drawing.Size(103, 32)
+        Me.btnProperCase.TabIndex = 19
+        Me.btnProperCase.Text = "Proper Case Files"
+        Me.ToolTip1.SetToolTip(Me.btnProperCase, "Convert filenames into Proper Case.")
+        Me.btnProperCase.UseVisualStyleBackColor = True
         '
         'btnShowRegexHelp
         '
-        Me.btnShowRegexHelp.Location = New System.Drawing.Point(23, 305)
+        Me.btnShowRegexHelp.Location = New System.Drawing.Point(12, 305)
         Me.btnShowRegexHelp.Name = "btnShowRegexHelp"
-        Me.btnShowRegexHelp.Size = New System.Drawing.Size(83, 32)
+        Me.btnShowRegexHelp.Size = New System.Drawing.Size(80, 32)
         Me.btnShowRegexHelp.TabIndex = 17
         Me.btnShowRegexHelp.Text = "RegEx Help"
         Me.btnShowRegexHelp.UseVisualStyleBackColor = True
@@ -306,12 +310,22 @@ Partial Class frmMain
         '
         'btnAbout
         '
-        Me.btnAbout.Location = New System.Drawing.Point(450, 305)
+        Me.btnAbout.Location = New System.Drawing.Point(452, 305)
         Me.btnAbout.Name = "btnAbout"
-        Me.btnAbout.Size = New System.Drawing.Size(80, 31)
-        Me.btnAbout.TabIndex = 19
+        Me.btnAbout.Size = New System.Drawing.Size(80, 32)
+        Me.btnAbout.TabIndex = 20
         Me.btnAbout.Text = "About"
         Me.btnAbout.UseVisualStyleBackColor = True
+        '
+        'btnEnumerate
+        '
+        Me.btnEnumerate.Location = New System.Drawing.Point(151, 305)
+        Me.btnEnumerate.Name = "btnEnumerate"
+        Me.btnEnumerate.Size = New System.Drawing.Size(80, 32)
+        Me.btnEnumerate.TabIndex = 18
+        Me.btnEnumerate.Text = "Number Files"
+        Me.ToolTip1.SetToolTip(Me.btnEnumerate, "Append a sequential number to the front of each filename.")
+        Me.btnEnumerate.UseVisualStyleBackColor = True
         '
         'frmMain
         '
@@ -319,9 +333,10 @@ Partial Class frmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(543, 349)
+        Me.Controls.Add(Me.btnEnumerate)
         Me.Controls.Add(Me.btnAbout)
         Me.Controls.Add(Me.btnShowRegexHelp)
-        Me.Controls.Add(Me.BtnProperCase)
+        Me.Controls.Add(Me.btnProperCase)
         Me.Controls.Add(Me.grpSearchandReplace)
         Me.Controls.Add(Me.grpStripXBeginning)
         Me.Controls.Add(Me.GrpSearchandRemove)
@@ -358,7 +373,7 @@ Partial Class frmMain
     Friend WithEvents txtSearchandReplaceSearch As System.Windows.Forms.TextBox
     Friend WithEvents dlgOpenFolder As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents txtStripX As System.Windows.Forms.TextBox
-    Friend WithEvents BtnProperCase As System.Windows.Forms.Button
+    Friend WithEvents btnProperCase As System.Windows.Forms.Button
     Friend WithEvents chkIgonreHidden As System.Windows.Forms.CheckBox
     Friend WithEvents RadioEnd As System.Windows.Forms.RadioButton
     Friend WithEvents RadioBeginning As System.Windows.Forms.RadioButton
@@ -368,5 +383,6 @@ Partial Class frmMain
     Friend WithEvents chkRegexRemove As System.Windows.Forms.CheckBox
     Friend WithEvents chkTestRemove As System.Windows.Forms.CheckBox
     Friend WithEvents btnAbout As System.Windows.Forms.Button
-
+    Friend WithEvents btnEnumerate As Button
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
