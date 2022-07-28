@@ -55,7 +55,7 @@ Partial Class frmRegExHelp
         Me.ClientSize = New System.Drawing.Size(726, 575)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.RichTextBox1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmRegExHelp"

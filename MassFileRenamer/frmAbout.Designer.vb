@@ -136,7 +136,7 @@ Partial Class frmAbout
         Me.Controls.Add(Me.LogoPictureBox)
         Me.Controls.Add(Me.OKButton)
         Me.Controls.Add(Me.Label1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmAbout"
