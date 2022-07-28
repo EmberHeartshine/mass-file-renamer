@@ -7,10 +7,6 @@
         Me.LabelCompanyName.Text = My.Application.Info.CompanyName
     End Sub
 
-    Private Sub TableLayoutPanel_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
-
-    End Sub
-
     Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         System.Diagnostics.Process.Start("https://github.com/EmberHeartshine/mass-file-renamer")
     End Sub
