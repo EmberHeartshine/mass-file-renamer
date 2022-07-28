@@ -98,7 +98,7 @@ Public Class frmMain
     '                                           Strip X Controls
     '===========================================================================================================================
     Private Sub txtStripX_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtStripX.GotFocus
-        If txtStripX.Text = "On Files That End With" Then
+        If txtStripX.Text = "File Ext" Then
             txtStripX.Text = ""
             txtStripX.ForeColor = Color.Black
         End If
@@ -386,5 +386,4 @@ Public Class frmMain
     Private Sub btnAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbout.Click
         frmAbout.Show()
     End Sub
-
 End Class
