@@ -209,7 +209,7 @@ Public Class frmMain
         CheckforPathError = foundError
     End Function
 
-    Public Function CheckifFileExists(path, oldFileName, newFileName) As Boolean
+    Public Function CheckifFileExists(ByVal path As String, ByVal oldFileName As String, ByVal newFileName As String) As Boolean
         Dim fileExists As Boolean = False
         If System.IO.File.Exists(path & "\" & newFileName) And Not Equals(oldFileName, path & "\" & newFileName) Then
             fileExists = True
@@ -217,8 +217,22 @@ Public Class frmMain
         CheckifFileExists = fileExists
     End Function
 
+    Public Function CheckifFileInUse(ByVal sFile As String) As Boolean
+        Dim thisFileInUse As Boolean = False
+        If System.IO.File.Exists(sFile) Then
+            Try
+                Using f As New System.IO.FileStream(sFile, FileMode.Open, FileAccess.ReadWrite, FileShare.None)
+                    ' thisFileInUse = False
+                End Using
+            Catch
+                thisFileInUse = True
+            End Try
+        End If
+        CheckifFileInUse = thisFileInUse
+    End Function
+
     '==================
-    '  File Functions
+    '  File Operations
     '==================
 
     Public Sub GetFileArray()
@@ -232,28 +246,36 @@ Public Class frmMain
     Private Sub SearchandRemove(ByVal SearchTerm As String)
         Dim JustFileName As String
         Dim TestModeBuffer As String = ""
+        Dim attributes As FileAttributes
         GetFileArray()
         For Each fileNameToProcess In FileList
-            JustFileName = ExtractFileNamefromPath(fileNameToProcess)
-            If chkRegexRemove.Checked Then
-                If chkTestRemove.Checked Then
-                    If TestModeBuffer.Contains(Regex.Replace(JustFileName, SearchTerm, "")) Then
-                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+            attributes = File.GetAttributes(fileNameToProcess)
+            If (attributes And FileAttributes.System) = FileAttributes.System Then
+                ' ALWAYS ignore system files
+            ElseIf (attributes And FileAttributes.Hidden) = FileAttributes.Hidden Then
+                ' ALWAYS ignore hidden files
+            Else
+                JustFileName = ExtractFileNamefromPath(fileNameToProcess)
+                If chkRegexRemove.Checked Then
+                    If chkTestRemove.Checked Then
+                        If TestModeBuffer.Contains(Regex.Replace(JustFileName, SearchTerm, "")) Then
+                            JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                        End If
+                        TestModeBuffer &= Regex.Replace(JustFileName, SearchTerm, "") & vbCrLf
+                    Else
+                        JustFileName = Regex.Replace(JustFileName, SearchTerm, "")
+                        If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                            JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                        End If
+                        System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                     End If
-                    TestModeBuffer &= Regex.Replace(JustFileName, SearchTerm, "") & vbCrLf
                 Else
-                    JustFileName = Regex.Replace(JustFileName, SearchTerm, "")
+                    JustFileName = JustFileName.Replace(SearchTerm, "")
                     If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
                         JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
                     End If
                     System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
-            Else
-                JustFileName = JustFileName.Replace(SearchTerm, "")
-                If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
-                    JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
-                End If
-                System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
             End If
         Next fileNameToProcess
         If chkTestRemove.Checked Then
@@ -266,28 +288,36 @@ Public Class frmMain
     Private Sub SearchandReplace(ByVal SearchTerm As String, ByVal Replacementtxt As String)
         Dim JustFileName As String = ""
         Dim TestModeBuffer As String = ""
+        Dim attributes As FileAttributes
         GetFileArray()
         For Each fileNameToProcess In FileList
-            JustFileName = ExtractFileNamefromPath(fileNameToProcess)
-            If chkRegex.Checked Then
-                If chkTestMode.Checked Then
-                    If TestModeBuffer.Contains(Regex.Replace(JustFileName, SearchTerm, Replacementtxt)) Then
-                        JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+            attributes = File.GetAttributes(fileNameToProcess)
+            If (attributes And FileAttributes.System) = FileAttributes.System Then
+                ' ALWAYS ignore system files
+            ElseIf (attributes And FileAttributes.Hidden) = FileAttributes.Hidden Then
+                ' ALWAYS ignore hidden files
+            Else
+                JustFileName = ExtractFileNamefromPath(fileNameToProcess)
+                If chkRegex.Checked Then
+                    If chkTestMode.Checked Then
+                        If TestModeBuffer.Contains(Regex.Replace(JustFileName, SearchTerm, Replacementtxt)) Then
+                            JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                        End If
+                        TestModeBuffer &= Regex.Replace(JustFileName, SearchTerm, Replacementtxt) & vbCrLf
+                    Else
+                        JustFileName = Regex.Replace(JustFileName, SearchTerm, Replacementtxt)
+                        If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
+                            JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
+                        End If
+                        System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                     End If
-                    TestModeBuffer &= Regex.Replace(JustFileName, SearchTerm, Replacementtxt) & vbCrLf
                 Else
-                    JustFileName = Regex.Replace(JustFileName, SearchTerm, Replacementtxt)
+                    JustFileName = JustFileName.Replace(SearchTerm, Replacementtxt)
                     If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
                         JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
                     End If
                     System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
                 End If
-            Else
-                JustFileName = JustFileName.Replace(SearchTerm, Replacementtxt)
-                If CheckifFileExists(txtDirectory.Text, fileNameToProcess, JustFileName) Then
-                    JustFileName = Path.GetFileNameWithoutExtension(JustFileName) & "_" & Path.GetExtension(JustFileName)
-                End If
-                System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
             End If
         Next fileNameToProcess
         If chkTestMode.Checked Then
@@ -305,7 +335,7 @@ Public Class frmMain
             JustFileName = ExtractFileNamefromPath(fileNameToProcess)
             attributes = File.GetAttributes(fileNameToProcess)
             If (attributes And FileAttributes.System) = FileAttributes.System Then
-                ' ALWAYS Ignore SYSTEM files
+                ' ALWAYS ignore system files
             Else
                 ' Check for hidden files
                 If (attributes And FileAttributes.Hidden) = FileAttributes.Hidden Then
@@ -338,7 +368,7 @@ Public Class frmMain
             JustFileName = ExtractFileNamefromPath(fileNameToProcess)
             attributes = File.GetAttributes(fileNameToProcess)
             If (attributes And FileAttributes.System) = FileAttributes.System Then
-                ' ALWAYS Ignore SYSTEM files
+                ' ALWAYS ignore system files
             Else
                 ' Check for hidden files
                 If (attributes And FileAttributes.Hidden) = FileAttributes.Hidden Then
@@ -374,16 +404,14 @@ Public Class frmMain
         For Each fileNameToProcess In FileList
             attributes = File.GetAttributes(fileNameToProcess)
             If (attributes And FileAttributes.System) = FileAttributes.System Then
-                ' ALWAYS Ignore SYSTEM files
+                ' ALWAYS ignore system files
+            ElseIf (attributes And FileAttributes.Hidden) = FileAttributes.Hidden Then
+                ' ALWAYS ignore hidden files
             Else
-                If (attributes And FileAttributes.Hidden) = FileAttributes.Hidden Then
-                    ' ALWAYS Ignore Hidden files
-                Else
-                    JustFileName = ExtractFileNamefromPath(fileNameToProcess)
-                    JustFileNameNoExt = Mid(JustFileName, 1, InStrRev(JustFileName, ".") - 1)
-                    JustFileName = JustFileName.Replace(JustFileNameNoExt, StrConv(JustFileNameNoExt, VbStrConv.ProperCase))
-                    System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
-                End If
+                JustFileName = ExtractFileNamefromPath(fileNameToProcess)
+                JustFileNameNoExt = Mid(JustFileName, 1, InStrRev(JustFileName, ".") - 1)
+                JustFileName = JustFileName.Replace(JustFileNameNoExt, StrConv(JustFileNameNoExt, VbStrConv.ProperCase))
+                System.IO.File.Move(fileNameToProcess, txtDirectory.Text & "\" & JustFileName)
             End If
         Next fileNameToProcess
         MsgBox("Proper Casing Complete!", MsgBoxStyle.Information, "Done!")
@@ -406,10 +434,10 @@ Public Class frmMain
         For Each fileNameToProcess In FileList
             attributes = File.GetAttributes(fileNameToProcess)
             If (attributes And FileAttributes.System) = FileAttributes.System Then
-                ' ALWAYS Ignore SYSTEM files
+                ' ALWAYS ignore system files
             Else
                 If (attributes And FileAttributes.Hidden) = FileAttributes.Hidden Then
-                    ' ALWAYS Ignore Hidden files
+                    ' ALWAYS ignore hidden files
                 Else
                     JustFileName = ExtractFileNamefromPath(fileNameToProcess)
                     JustFileName = fileIndex.ToString(leadingZeroes) & "-" & JustFileName
