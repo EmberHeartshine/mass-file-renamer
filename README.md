@@ -19,3 +19,10 @@ This app was designed to be a lightweight and more importantly a stand alone app
 - Supports using capture () and recalling it with $1, $2 etc in the replace string.
 - Proper Case (Capitalize the first letter of each word and make the rest lower-case).
 - Automatically number the files in a directory, including leading zeroes.
+
+## Minimum Requirements
+- Windows &ge; 7
+- [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework) &ge; 4.6.2
+
+## Version Numbering
+I use a variation of [semantic versioning](https://semver.org/) that follows the scheme `major.minor.patch.revision`.
