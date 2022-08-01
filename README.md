@@ -26,3 +26,7 @@ This app was designed to be a lightweight and more importantly a stand alone app
 
 ## Version Numbering
 I use a variation of [semantic versioning](https://semver.org/) that follows the scheme `major.minor.patch.revision`.
+- A major revision would involve a total refactor, language change, or other significant update to the codebase.
+- A minor revision includes new features or significant usability enhancements.
+- Patches are updates to existing functionality to improve or streamline their functionality.
+- Revisions are small bugfixes or minor code formatting changes that do not affect functionality.
