@@ -1,19 +1,15 @@
 ﻿Imports System.IO
 Imports System.Text.RegularExpressions
-
 Public Class frmMain
     Dim FileList As String()
-
     '===========================
     '  Open Directory Controls
     '===========================
-
     Private Sub Form1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.All
         End If
     End Sub
-
     Private Sub Form1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragDrop
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             Dim MyFiles() As String
@@ -24,7 +20,6 @@ Public Class frmMain
             End If
         End If
     End Sub
-
     Private Sub btnOpen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpen.Click
         dlgOpenFolder.ShowDialog()
         If Directory.Exists(dlgOpenFolder.SelectedPath) Then
@@ -32,39 +27,33 @@ Public Class frmMain
             txtDirectory.ForeColor = Color.Black
         End If
     End Sub
-
     Private Sub txtDirectory_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDirectory.GotFocus
         If txtDirectory.Text = "Path To Directory" Then
             txtDirectory.Text = ""
             txtDirectory.ForeColor = Color.Black
         End If
     End Sub
-
     Private Sub txtDirectory_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDirectory.LostFocus
         If txtDirectory.Text = "" Then
             txtDirectory.Text = "Path To Directory"
             txtDirectory.ForeColor = Color.Silver
         End If
     End Sub
-
     '==============================
     '  Search and Remove Controls
     '==============================
-
     Private Sub txtSearchRemove_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSearchRemove.GotFocus
         If txtSearchRemove.Text = "Search For Text to Remove" Then
             txtSearchRemove.Text = ""
             txtSearchRemove.ForeColor = Color.Black
         End If
     End Sub
-
     Private Sub txtSearchRemove_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSearchRemove.LostFocus
         If txtSearchRemove.Text = "" Then
             txtSearchRemove.Text = "Search For Text to Remove"
             txtSearchRemove.ForeColor = Color.Silver
         End If
     End Sub
-
     Private Sub btnSearchRemove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearchRemove.Click
         '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
@@ -75,7 +64,6 @@ Public Class frmMain
         '== Error Checking ==
         SearchandRemove(txtSearchRemove.Text)
     End Sub
-
     Private Sub chkRegexRemove_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkRegexRemove.CheckedChanged
         If chkRegexRemove.Checked Then
             btnShowRegexHelp.Visible = True
@@ -89,18 +77,15 @@ Public Class frmMain
             chkTestRemove.Checked = False
         End If
     End Sub
-
     '====================
     '  Strip X Controls
     '====================
-
     Private Sub txtStripX_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtStripX.GotFocus
         If txtStripX.Text = "File Ext" Then
             txtStripX.Text = ""
             txtStripX.ForeColor = Color.Black
         End If
     End Sub
-
     Private Sub txtStripX_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtStripX.LostFocus
         If txtStripX.Text = "" Then
             txtStripX.Text = "File Ext"
@@ -111,7 +96,6 @@ Public Class frmMain
             End If
         End If
     End Sub
-
     Private Sub btnStripX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStripX.Click
         '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
@@ -127,39 +111,33 @@ Public Class frmMain
             StripXfromEnd(numStripX.Value)
         End If
     End Sub
-
     '====================================
     '  Search and Replace Text Controls
     '====================================
-
     Private Sub txtSearchandReplaceSearch_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSearchandReplaceSearch.GotFocus
         If txtSearchandReplaceSearch.Text = "Search String" Then
             txtSearchandReplaceSearch.Text = ""
             txtSearchandReplaceSearch.ForeColor = Color.Black
         End If
     End Sub
-
     Private Sub txtSearchandReplaceSearch_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSearchandReplaceSearch.LostFocus
         If txtSearchandReplaceSearch.Text = "" Then
             txtSearchandReplaceSearch.Text = "Search String"
             txtSearchandReplaceSearch.ForeColor = Color.Silver
         End If
     End Sub
-
     Private Sub txtSearchandReplaceReplace_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSearchandReplaceReplace.GotFocus
         If txtSearchandReplaceReplace.Text = "Replacement String" Then
             txtSearchandReplaceReplace.Text = ""
             txtSearchandReplaceReplace.ForeColor = Color.Black
         End If
     End Sub
-
     Private Sub txtSearchandReplaceReplace_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSearchandReplaceReplace.LostFocus
         If txtSearchandReplaceReplace.Text = "" Then
             txtSearchandReplaceReplace.Text = "Replacement String"
             txtSearchandReplaceReplace.ForeColor = Color.Silver
         End If
     End Sub
-
     Private Sub btnSearchandReplace_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearchandReplace.Click
         '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
@@ -174,7 +152,6 @@ Public Class frmMain
         '== Error Checking ==
         SearchandReplace(txtSearchandReplaceSearch.Text, txtSearchandReplaceReplace.Text)
     End Sub
-
     Private Sub chkRegex_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkRegex.CheckedChanged
         If chkRegex.Checked Then
             btnShowRegexHelp.Visible = True
@@ -188,15 +165,12 @@ Public Class frmMain
             chkTestMode.Checked = False
         End If
     End Sub
-
     Private Sub btnShowRegexHelp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnShowRegexHelp.Click
         frmRegExHelp.Show()
     End Sub
-
     '==================
     '  Error Checking
     '==================
-
     Public Function CheckforPathError() As Boolean
         Dim foundError As Boolean = False
         If txtDirectory.Text = "Path To Directory" Or txtDirectory.Text = "" Then
@@ -208,7 +182,6 @@ Public Class frmMain
         End If
         CheckforPathError = foundError
     End Function
-
     Public Function CheckifFileExists(ByVal path As String, ByVal oldFileName As String, ByVal newFileName As String) As Boolean
         Dim fileExists As Boolean = False
         If System.IO.File.Exists(path & "\" & newFileName) And Not Equals(oldFileName, path & "\" & newFileName) Then
@@ -216,7 +189,6 @@ Public Class frmMain
         End If
         CheckifFileExists = fileExists
     End Function
-
     Public Function CheckifFileInUse(ByVal sFile As String) As Boolean
         Dim thisFileInUse As Boolean = False
         If System.IO.File.Exists(sFile) Then
@@ -230,19 +202,15 @@ Public Class frmMain
         End If
         CheckifFileInUse = thisFileInUse
     End Function
-
     '==================
     '  File Operations
     '==================
-
     Public Sub GetFileArray()
         FileList = Directory.GetFiles(txtDirectory.Text)
     End Sub
-
     Public Function ExtractFileNamefromPath(ByVal FullPathName As String) As String
         ExtractFileNamefromPath = Mid(FullPathName, InStrRev(FullPathName, "\") + 1)
     End Function
-
     Private Sub SearchandRemove(ByVal SearchTerm As String)
         Dim JustFileName As String
         Dim TestModeBuffer As String = ""
@@ -284,7 +252,6 @@ Public Class frmMain
             MsgBox("Search and Remove Complete!", MsgBoxStyle.Information, "Done!")
         End If
     End Sub
-
     Private Sub SearchandReplace(ByVal SearchTerm As String, ByVal Replacementtxt As String)
         Dim JustFileName As String = ""
         Dim TestModeBuffer As String = ""
@@ -326,7 +293,6 @@ Public Class frmMain
             MsgBox("Search and Replace Complete!", MsgBoxStyle.Information, "Done!")
         End If
     End Sub
-
     Private Sub StripXfromBeginning(ByVal strip As Integer)
         Dim JustFileName As String
         Dim attributes As FileAttributes
@@ -359,7 +325,6 @@ Public Class frmMain
         Next fileNameToProcess
         MsgBox("Strip X From Beginning Complete!", MsgBoxStyle.Information, "Done!")
     End Sub
-
     Private Sub StripXfromEnd(ByVal strip As Integer)
         Dim JustFileName As String
         Dim attributes As FileAttributes
@@ -392,7 +357,6 @@ Public Class frmMain
         Next fileNameToProcess
         MsgBox("Strip X From End Complete!", MsgBoxStyle.Information, "Done!")
     End Sub
-
     Private Sub btnProperCase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProperCase.Click
         '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
@@ -416,11 +380,9 @@ Public Class frmMain
         Next fileNameToProcess
         MsgBox("Proper Casing Complete!", MsgBoxStyle.Information, "Done!")
     End Sub
-
     Private Sub btnAbout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbout.Click
         frmAbout.Show()
     End Sub
-
     Private Sub btnEnumerate_Click(sender As Object, e As EventArgs) Handles btnEnumerate.Click
         '== Error Checking ==
         If CheckforPathError() = True Then Exit Sub
