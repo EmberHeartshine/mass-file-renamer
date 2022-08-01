@@ -1,25 +1,18 @@
 ﻿Public NotInheritable Class frmAbout
-
-    Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmAbout_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.LabelProductName.Text = My.Application.Info.ProductName
-        Me.LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
+        Me.LabelVersion.Text = "Version " & My.Application.Info.Version.ToString
         Me.LabelCopyright.Text = My.Application.Info.Copyright
         Me.LabelCompanyName.Text = My.Application.Info.CompanyName
+        Me.LabelDescription.Text = "Description:" & vbNewLine & vbNewLine & My.Application.Info.Description
     End Sub
-
     Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         System.Diagnostics.Process.Start("https://github.com/EmberHeartshine/mass-file-renamer")
     End Sub
-
     Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         System.Diagnostics.Process.Start("https://code.google.com/archive/p/mass-file-renamer/")
     End Sub
-
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click
         Me.Close()
-    End Sub
-
-    Private Sub LogoPictureBox_Click(sender As Object, e As EventArgs) Handles LogoPictureBox.Click
-
     End Sub
 End Class

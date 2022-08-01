@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Mass File Renamer")>
-<Assembly: AssemblyDescription("A program to simplify renaming a lot of files in batch through a simple lightweight GUI")>
+<Assembly: AssemblyDescription("A program to simplify renaming a lot of files in batch through a simple lightweight GUI.")>
 <Assembly: AssemblyCompany("Travis Phillips, Ember Heartshine")>
 <Assembly: AssemblyProduct("Mass File Renamer")>
 <Assembly: AssemblyCopyright("© Travis Phillips 2011, Ember Heartshine 2022")>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.1.1.0")>
-<Assembly: AssemblyFileVersion("1.1.1.0")>
+<Assembly: AssemblyVersion("1.1.1.1")>
+<Assembly: AssemblyFileVersion("1.1.1.1")>
 <Assembly: NeutralResourcesLanguage("en-US")>
