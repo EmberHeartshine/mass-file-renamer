@@ -27,7 +27,7 @@ Partial Class frmAbout
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAbout))
         Me.OKButton = New System.Windows.Forms.Button()
         Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LabelDescription = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LabelProductName = New System.Windows.Forms.Label()
@@ -59,15 +59,15 @@ Partial Class frmAbout
         Me.LogoPictureBox.TabStop = False
         Me.ToolTip1.SetToolTip(Me.LogoPictureBox, "You know what they say about curiosity and cats.")
         '
-        'Label1
+        'LabelDescription
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(143, 116)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(268, 52)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Description:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "A program to simplify renaming a mass of file in a simple " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "batch" &
-    " through a simple lightweight GUI."
+        Me.LabelDescription.AutoSize = True
+        Me.LabelDescription.Location = New System.Drawing.Point(143, 116)
+        Me.LabelDescription.MaximumSize = New System.Drawing.Size(268, 52)
+        Me.LabelDescription.Name = "LabelDescription"
+        Me.LabelDescription.Size = New System.Drawing.Size(86, 13)
+        Me.LabelDescription.TabIndex = 1
+        Me.LabelDescription.Text = "LabelDescription"
         '
         'LinkLabel1
         '
@@ -145,7 +145,7 @@ Partial Class frmAbout
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.OKButton)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.LabelDescription)
         Me.Controls.Add(Me.LogoPictureBox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -162,7 +162,7 @@ Partial Class frmAbout
     End Sub
     Friend WithEvents OKButton As System.Windows.Forms.Button
     Friend WithEvents LogoPictureBox As System.Windows.Forms.PictureBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents LabelDescription As System.Windows.Forms.Label
     Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
     Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
     Friend WithEvents LabelProductName As System.Windows.Forms.Label
